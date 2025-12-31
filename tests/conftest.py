@@ -16,6 +16,32 @@ from vitrina.datasets.models import DCATResourceSubclass
 builtins.pp = pp
 
 
+@pytest.fixture(scope="session", autouse=True)
+def patch_cms_page_manager_for_blog_migration():
+    """
+    Patch CMS Page manager to add drafts() method for djangocms-blog migration compatibility.
+
+    djangocms-blog migration 0014_auto_20160215_1331 uses Page.objects.drafts() which was
+    removed in django-CMS 4.x. This patch adds the method back as an alias to all() since
+    in CMS 4.x, all pages are considered "live" by default (no draft/publish distinction).
+    """
+    from cms.models import Page
+
+    # Only patch if the method doesn't exist (CMS 4.x)
+    if not hasattr(Page.objects, 'drafts'):
+        # Add drafts() method that returns all pages (CMS 4.x behavior)
+        Page.objects.drafts = lambda: Page.objects.all()
+
+    yield
+
+    # Cleanup: remove the patched method if we added it
+    if hasattr(Page.objects, 'drafts') and callable(Page.objects.drafts):
+        try:
+            delattr(Page.objects.__class__, 'drafts')
+        except (AttributeError, TypeError):
+            pass  # Method might be bound differently, safe to ignore
+
+
 def _normalize_csv(csv_string: str) -> list[list[str]]:
     reader = csv.reader(io.StringIO(csv_string))
     rows = [row for row in reader if any(col.strip() for col in row)]
