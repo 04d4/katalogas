@@ -130,7 +130,6 @@ INSTALLED_APPS = [
     "treebeard",
     "filer",
     "easy_thumbnails",
-    "djangocms_text",
     "djangocms_file",
     "djangocms_picture",
     "djangocms_link",
@@ -140,7 +139,7 @@ INSTALLED_APPS = [
     "taggit_autosuggest",
     "meta",
     "sortedm2m",
-    "djangocms_blog",
+    "djangocms_text",
     "reversion",
     "hitcount",
     "crispy_forms",
@@ -437,7 +436,7 @@ ELASTIC_FACET_SIZE = 50
 
 HAYSTACK_SIGNAL_PROCESSOR = "vitrina.datasets.search_indexes.CustomSignalProcessor"
 
-BLOG_USE_PLACEHOLDER = False
+
 META_USE_SITES = True
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = ("bulma",)
@@ -577,7 +576,6 @@ TAGULOUS_AUTOCOMPLETE_JS = (
 )
 TAGULOUS_AUTOCOMPLETE_CSS = {"all": ["admin/css/vendor/select2/select2.min.css"]}
 INSTALLED_APPS += [
-    "djangocms_4_migration",
     "djangocms_versioning",
     "djangocms_alias",
 ]
@@ -588,3 +586,4 @@ CMS_MIGRATION_USER_ID = 1
 INSTALLED_APPS += [
     "djangocms_stories",
 ]
+DJANGOCMS_VERSIONING_USERNAME_FIELD = "email"
