@@ -584,3 +584,7 @@ INSTALLED_APPS += [
 CMS_CONFIRM_VERSION4 = True
 CMS_MIGRATION_USER_ID = 1
 
+
+INSTALLED_APPS += [
+    "djangocms_stories",
+]
