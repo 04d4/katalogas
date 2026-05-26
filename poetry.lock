@@ -183,22 +183,6 @@ frozenlist = ">=1.1.0"
 typing-extensions = {version = ">=4.2", markers = "python_version < \"3.13\""}
 
 [[package]]
-name = "aldryn-apphooks-config"
-version = "0.7.0"
-description = "Namespaces based configuration for Apphooks"
-optional = false
-python-versions = ">=3.7"
-groups = ["main"]
-files = [
-    {file = "aldryn-apphooks-config-0.7.0.tar.gz", hash = "sha256:d6467ed1a61f88ef73ea02d5ec5a9c3ffd96855738192b1849ab0df86a5e1566"},
-    {file = "aldryn_apphooks_config-0.7.0-py2.py3-none-any.whl", hash = "sha256:909339d91ebde6b9d0b1e5b791f08cce4f52d3f7967fa3de2d6e299fd869344c"},
-]
-
-[package.dependencies]
-django-appdata = ">=0.3.0"
-django-cms = ">=3.9"
-
-[[package]]
 name = "alembic"
 version = "1.18.4"
 description = "A database migration tool for SQLAlchemy."
@@ -1578,21 +1562,6 @@ files = [
 django = "*"
 
 [[package]]
-name = "django-appdata"
-version = "0.4.0"
-description = "Extendable field that enables Django apps to store their data on your models."
-optional = false
-python-versions = ">=3.7"
-groups = ["main"]
-files = [
-    {file = "django-appdata-0.4.0.tar.gz", hash = "sha256:db5726e3118f15b3894e581392dfde355ebce4d66000b15c0cffc3fc80a01446"},
-    {file = "django_appdata-0.4.0-py2.py3-none-any.whl", hash = "sha256:3d415c9d2b627184dba8f92ae454345adcdc803514c86a25a87bbf34ea2b3d91"},
-]
-
-[package.dependencies]
-django = "*"
-
-[[package]]
 name = "django-braces"
 version = "1.17.0"
 description = "Reusable, generic mixins for Django"
@@ -1672,24 +1641,29 @@ django = ">=3.2"
 
 [[package]]
 name = "django-cms"
-version = "3.11.10"
+version = "5.0.7"
 description = "Lean enterprise content management powered by Django."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "django_cms-3.11.10-py2.py3-none-any.whl", hash = "sha256:868b19d7b74aef16bc05251934aaaf92e151590ecdfe1132989f32a28c42a95d"},
-    {file = "django_cms-3.11.10.tar.gz", hash = "sha256:41fdf1f239c7eaca9283721a9df0198de5b44ef12082cb43f32726cfbb76ec84"},
+    {file = "django_cms-5.0.7-py2.py3-none-any.whl", hash = "sha256:68dddfbbd7268066745db50eb63438468cff4917a3b8bb9b08e629ef9e233d94"},
+    {file = "django_cms-5.0.7.tar.gz", hash = "sha256:dbb9cda5c1e4a9b436c1149479db4722fda8404196cfeb2ad0d5cb1a2e228cc8"},
 ]
 
 [package.dependencies]
-Django = ">=3.2"
+Django = ">=2.2"
 django-classy-tags = ">=0.7.2"
 django-formtools = ">=2.1"
 django-sekizai = ">=0.7"
-django-treebeard = ">=4.3,<4.5 || >4.5"
+django-treebeard = ">=4.3"
 djangocms-admin-style = ">=1.2"
 packaging = "*"
+setuptools = "*"
+
+[package.extras]
+argon2 = ["argon2-cffi (>=19.1.0)"]
+bcrypt = ["bcrypt"]
 
 [[package]]
 name = "django-compressor"
@@ -1819,6 +1793,26 @@ files = [
 
 [package.dependencies]
 Django = ">=3.2"
+
+[[package]]
+name = "django-fsm-2"
+version = "4.2.4"
+description = "Django friendly finite state machine support."
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "django_fsm_2-4.2.4-py3-none-any.whl", hash = "sha256:0072be359520075eee4baead3873e5eb8f1700b4f91e41208058cbea0ceae9b9"},
+    {file = "django_fsm_2-4.2.4.tar.gz", hash = "sha256:0e395afd03ff504afd476e8568ca213aafc3324bd4e5427e5b3287f7b1e7d979"},
+]
+
+[package.dependencies]
+django = ">=4.2.29"
+django-stubs-ext = "*"
+typing-extensions = {version = "*", markers = "python_version < \"3.12\""}
+
+[package.extras]
+graphviz = ["graphviz"]
 
 [[package]]
 name = "django-haystack"
@@ -2062,6 +2056,22 @@ files = [
 ]
 
 [[package]]
+name = "django-stubs-ext"
+version = "6.0.5"
+description = "Monkey-patching and extensions for django-stubs"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "django_stubs_ext-6.0.5-py3-none-any.whl", hash = "sha256:a9932c8233d6dd4e34ae0b192026379c1a9be8f0b7c27aa1fa09ae215169773e"},
+    {file = "django_stubs_ext-6.0.5.tar.gz", hash = "sha256:1cc325e991303849bce70e19748981b225ef08b37256f263e113caf97cd3bcc0"},
+]
+
+[package.dependencies]
+django = "*"
+typing-extensions = "*"
+
+[[package]]
 name = "django-taggit"
 version = "6.1.0"
 description = "django-taggit is a reusable Django application for simple tagging."
@@ -2199,19 +2209,20 @@ files = [
 Django = "*"
 
 [[package]]
-name = "djangocms-apphook-setup"
-version = "0.5.1"
-description = "Library to auto setup apphooks"
+name = "djangocms-alias"
+version = "3.1.1"
+description = "An alias is a collection of plugins that is managed centrally."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "djangocms-apphook-setup-0.5.1.tar.gz", hash = "sha256:b4173e1335216e8e16b027efcdbf97f1a1139d141c139793285adb4f33f88021"},
-    {file = "djangocms_apphook_setup-0.5.1-py2.py3-none-any.whl", hash = "sha256:0cd01022e5e342751f630900a276d2eb1a680ec6cef371aa206049731ebdc43b"},
+    {file = "djangocms_alias-3.1.1-py3-none-any.whl", hash = "sha256:18d5cca443271415b725fefc9e7430f0e78ecd4cbfb7d4daaa45252dda83e56a"},
+    {file = "djangocms_alias-3.1.1.tar.gz", hash = "sha256:63e979ae6fe973c525dee437d393462b4ad5cbe9fb790ab9af7db8dfcb25469f"},
 ]
 
 [package.dependencies]
-django-cms = ">=3.7,<4.0"
+django-cms = ">=5.0"
+django-parler = ">=1.4"
 
 [[package]]
 name = "djangocms-attributes-field"
@@ -2227,38 +2238,6 @@ files = [
 
 [package.dependencies]
 django-cms = ">=3.7"
-
-[[package]]
-name = "djangocms-blog"
-version = "2.0.9"
-description = "The blog application for django CMS"
-optional = false
-python-versions = ">=3.7"
-groups = ["main"]
-files = [
-    {file = "djangocms_blog-2.0.9-py2.py3-none-any.whl", hash = "sha256:4d478ffdd7b1cbd79cb54b2932583943f649c119bfd5bac4eeba9b9be1f96e24"},
-    {file = "djangocms_blog-2.0.9.tar.gz", hash = "sha256:fa4e738e9aa12ae9fa57243484830e1c388c9c033e196debd3966f0b4fe4fb56"},
-]
-
-[package.dependencies]
-aldryn-apphooks-config = ">=0.5"
-django-cms = ">=3.9,<4.0"
-django-filer = ">=2.0"
-django-meta = ">=2.4"
-django-parler = ">=2.0"
-django-sortedm2m = "*"
-django-taggit = ">=1.0"
-django-taggit-autosuggest = "*"
-django-taggit-templatetags = "*"
-djangocms-apphook-setup = "*"
-djangocms-text-ckeditor = ">=3.9"
-easy-thumbnails = ">=2.4.1"
-lxml = "*"
-pytz = "*"
-
-[package.extras]
-docs = ["django (<5.0)", "sphinx (>2,<6)", "sphinx-rtd-theme"]
-taggit-helpers = ["django-taggit-helpers"]
 
 [[package]]
 name = "djangocms-file"
@@ -2312,6 +2291,37 @@ djangocms-attributes-field = ">=1"
 easy-thumbnails = "*"
 
 [[package]]
+name = "djangocms-stories"
+version = "0.9.1"
+description = "The versatile stories and blog application for django CMS 4+"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "djangocms_stories-0.9.1-py3-none-any.whl", hash = "sha256:ee39f30ef83aaac65b8063d5c25b935d76afc52346b337b5a3bc3869861343f6"},
+    {file = "djangocms_stories-0.9.1.tar.gz", hash = "sha256:04f85f6ddf62d4a760159a083703d4a93b53754211aa1161968a1b9da966bda5"},
+]
+
+[package.dependencies]
+django-cms = ">=4.1"
+django-filer = ">=2"
+django-meta = ">=2"
+django-parler = ">=2"
+django-sortedm2m = "*"
+django-taggit = ">=1"
+django-taggit-autosuggest = "*"
+django-taggit-templatetags = "*"
+djangocms-text = "*"
+easy-thumbnails = ">=2.4.1"
+lxml = "*"
+pytz = "*"
+
+[package.extras]
+docs = ["django"]
+taggit-helpers = ["django-taggit-helpers"]
+test = ["coverage", "coveralls (>=2)", "django-taggit-helpers", "djangocms-text", "djangocms-video", "pysolr", "pytest", "pytest-asyncio", "pytest-django", "pytest-factoryboy"]
+
+[[package]]
 name = "djangocms-text"
 version = "0.9.7"
 description = "Rich Text Plugin for django CMS"
@@ -2346,6 +2356,23 @@ django-cms = ">=3.6"
 html5lib = ">=1"
 packaging = "*"
 Pillow = "*"
+
+[[package]]
+name = "djangocms-versioning"
+version = "2.5.1"
+description = "Versioning for django CMS"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "djangocms_versioning-2.5.1-py3-none-any.whl", hash = "sha256:f396014400dab3a561227d5395496aec40666f5e36aa8337f99aff8752249581"},
+    {file = "djangocms_versioning-2.5.1.tar.gz", hash = "sha256:8e4d69e583918a8bb6264049a865c68abd2adc8cd14aa150b8ab1ad4d852a226"},
+]
+
+[package.dependencies]
+django-cms = ">=4.1.1"
+django-fsm-2 = "*"
+packaging = "*"
 
 [[package]]
 name = "djangorestframework"
@@ -7378,4 +7405,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "ecdec9e430ecc65ab55e28592ee34edf332ae3133fa30f47485a921a2f03fcfa"
+content-hash = "08c6812eb83cd79dd6c14b19aca55dacceff85d69108324010ecd15dd71640fc"
