@@ -37,3 +37,4 @@
 .aider*
 GEMINI.md
 .coverage
+__pycache__
