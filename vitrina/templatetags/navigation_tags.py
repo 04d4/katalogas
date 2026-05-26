@@ -14,5 +14,5 @@ def _published_nav_page_ids():
 @register.inclusion_tag("menu.html")
 def show_menu():
     published_ids = _published_nav_page_ids()
-    pages = Page.objects.filter(pk__in=published_ids, node__parent__isnull=True).order_by("node__path")
-    return {"pages": {page: Page.objects.filter(pk__in=published_ids, node__parent=page.node).order_by("node__path") for page in pages}}
+    pages = Page.objects.filter(pk__in=published_ids, parent__isnull=True).order_by("path")
+    return {"pages": {page: page.children.filter(pk__in=published_ids) for page in pages}}
