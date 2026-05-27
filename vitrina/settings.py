@@ -133,7 +133,6 @@ INSTALLED_APPS = [
     "djangocms_file",
     "djangocms_picture",
     "djangocms_link",
-    "aldryn_apphooks_config",
     "parler",
     "taggit",
     "taggit_autosuggest",
